@@ -1,14 +1,19 @@
-package com.ppk;
+package com.ppk.recursion;
 
 import java.util.Stack;
 
 /**
- * The idea of the solution is to hold all values in Function Call Stack until the stack becomes empty. When the stack becomes empty, insert all held items one by one at the bottom of the stack.
+ * The idea of the solution is to hold all values in Function Call Stack until the stack becomes empty. 
+ * <br>
+ * When the stack becomes empty, insert all held items one by one at the bottom of the stack.
+ * 
+ * <br>
+ * Requires two recursive functions for each operation
  * 
  * @author pkalekar
  *
  */
-public class ReverseStackRecursion {
+public class ReverseStackDemo {
 	
 	private static Stack<Integer> stack = new Stack<>();
 	
@@ -60,6 +65,7 @@ public class ReverseStackRecursion {
 		//now that we handled empty use case, what if there is one item in the list?
 		//remove top and hold it in function call stack
 		int temp = stack.pop();
+		
 		//keep inserting at bottom for rest of the stack
 		insertAtBottom(i);
 
