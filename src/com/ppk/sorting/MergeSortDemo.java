@@ -1,4 +1,4 @@
-package com.ppk.recursion;
+package com.ppk.sorting;
 
 import java.util.Arrays;
 
@@ -66,7 +66,7 @@ public class MergeSortDemo {
 		int[] right = new int[sizeRight];
 		
 		for (int i = 0; i < sizeLeft; i++) {
-			left[i] = array[start + i];	//do not forget to add start index into i
+			left[i] = array[start + i];	//do not forget to add start index into i, start is the offset
 		}
 		
 		for (int i = 0; i < sizeRight; i++) {
