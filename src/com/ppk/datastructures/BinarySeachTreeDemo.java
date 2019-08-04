@@ -1,5 +1,9 @@
 package com.ppk.datastructures;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * 
  * Binary Search Tree -
@@ -42,10 +46,35 @@ public class BinarySeachTreeDemo {
 			binarySearchTree.insertNode(i);
 		}
 		
+		System.out.println("Original Tree (pre-order)-");
+		binarySearchTree.traversePreOrder();
+		System.out.println();
+		
+		System.out.println("Original Tree (post-order)-");
+		binarySearchTree.traversePostOrder();
+		System.out.println();
+		
 		//traverse in-order i.e. left->root->right
-		System.out.println("Original Tree -");
+		System.out.println("Original Tree (in-order)-");
 		binarySearchTree.traverseInOrder();
 		System.out.println();
+		
+		System.out.println("Original Tree (level-order)-");
+		binarySearchTree.traverseLevelOrder();
+		System.out.println();
+		
+		System.out.println("Original Tree (level-order using queue)-");
+		binarySearchTree.traverseLevelOrderUsingQueue();
+		System.out.println();
+		
+		System.out.println("Original Tree (reverse level-order)-");
+		binarySearchTree.traverseReverseLevelOrder();
+		System.out.println();
+		
+		System.out.println("Original Tree (reverse level-order using Queue and Stack)-");
+		binarySearchTree.traverseReverseLevelOrderUsingQueueAndStack();
+		System.out.println();
+		
 		System.out.println("findNode(125) (should return node) - "+ binarySearchTree.findNode(125));
 		System.out.println("findNode(99) (should return null) - "+ binarySearchTree.findNode(99));
 		
@@ -351,7 +380,13 @@ class BinarySearchTree{
 	/**
 	 * Traverse and print the node data in-order
 	 * <br>
+	 * gives nodes in non-decreasing order
+	 * <br>
+	 * Note - To get nodes of BST in non-increasing order, a variation of in-order traversal where in-order traversal is reversed can be used.
+	 * <br>
 	 * left->root->right
+	 * <br>
+	 * Time Complexity: O(n)
 	 */
 	public void traverseInOrder() {
 		if(this.root == null) {
@@ -359,7 +394,7 @@ class BinarySearchTree{
 			return;
 		}
 		
-		traverseNode(this.root);
+		traverseInOrder(this.root);
 	}
 	
 	/**
@@ -369,20 +404,228 @@ class BinarySearchTree{
 	 * 
 	 * @param current
 	 */
-	private void traverseNode(TreeNode current) {
+	private void traverseInOrder(TreeNode current) {
 		if(current == null)	return;
 		
-		if(current.getLeftNode() != null)
-			traverseNode(current.getLeftNode());
+		//No need for null check as the recursive call already first checks if the node is null
+		//		if(current.getLeftNode() != null)
+		traverseInOrder(current.getLeftNode());
+
+		if(current == this.root)
+			System.out.print(current.getData() + "* -> ");
+		else
+			System.out.print(current.getData() + " -> ");
+
+		//		if(current.getRightNode() != null)
+		traverseInOrder(current.getRightNode());
+
+	}
+	
+	/**
+	 * Traverse and print the node data pre-order
+	 * <br>
+	 * root->left->right
+	 * <br>
+	 * used to create a copy of the tree
+	 * <br>
+	 * Time Complexity: O(n)
+	 */
+	public void traversePreOrder() {
+		if(this.root == null) {
+			System.out.println("Empty Tree");
+			return;
+		}
+		
+		traversePreOrder(this.root);
+	}
+	
+	/**
+	 * Private traverse method which first prints the current root, then goes to left node and then goes to right node recursively
+	 * 
+	 * <br> This could be implemented inside TreeNode class well
+	 * 
+	 * @param current
+	 */
+	private void traversePreOrder(TreeNode current) {
+		if(current == null)	return;
 		
 		if(current == this.root)
 			System.out.print(current.getData() + "* -> ");
 		else
 			System.out.print(current.getData() + " -> ");
 		
-		if(current.getRightNode() != null)
-			traverseNode(current.getRightNode());
+		//No need for null check as the recursive call already first checks if the node is null
+		//		if(current.getLeftNode() != null)
+		traversePreOrder(current.getLeftNode());
+
+		//		if(current.getRightNode() != null)
+		traversePreOrder(current.getRightNode());
+
+	}
+	
+	/**
+	 * Traverse and print the node data post-order
+	 * <br>
+	 * left->right->root
+	 * <br>
+	 * used to delete the tree
+	 * <br>
+	 * Time Complexity: O(n)
+	 */
+	public void traversePostOrder() {
+		if(this.root == null) {
+			System.out.println("Empty Tree");
+			return;
+		}
 		
+		traversePostOrder(this.root);
+	}
+	
+	/**
+	 * Private traverse method which first goes to left node if exists, then goes to right node recursively, then prints the current root 
+	 * 
+	 * <br> This could be implemented inside TreeNode class well
+	 * 
+	 * @param current
+	 */
+	private void traversePostOrder(TreeNode current) {
+		if(current == null)	return;
+		
+		//No need for null check as the recursive call already first checks if the node is null
+		//		if(current.getLeftNode() != null)
+		traversePostOrder(current.getLeftNode());
+
+		//		if(current.getRightNode() != null)
+		traversePostOrder(current.getRightNode());
+		
+		if(current == this.root)
+			System.out.print(current.getData() + "* -> ");
+		else
+			System.out.print(current.getData() + " -> ");
+
+	}
+	
+	/**
+	 * Traverse and print the node data one level at time from top to bottom
+	 * <br>
+	 * Idea is to call a function asking it to print the given level, starting from level 1 to height of tree
+	 * <br>
+	 * Time Complexity: O(n^2)
+	 * 
+	 */
+	public void traverseLevelOrder() {
+		
+		int height = this.height();
+		
+		for(int i = 1; i <= height; i++) {
+			printGivenLevel(this.root, i);
+		}
+	}
+	
+	
+	/**
+	 * Traverse and print the node data one level at time from top to bottom
+	 * <br>
+	 * Idea is to call a function asking it to print the given level, starting from level 1 to height of tree
+	 * <br>
+	 * Time Complexity: O(n^2)
+	 */
+	public void traverseReverseLevelOrder() {
+		
+		int height = this.height();
+		
+		for(int i = height; i >= 1; i--) {
+			printGivenLevel(this.root, i);
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * Function to print all nodes at a given level
+	 * <br>
+	 * Print nth level if a base tree is equivalent to -
+	 * print (n-1)th level of its left or right child
+	 * <br>
+	 * When level reaches one, we print the current node
+	 * 
+	 * @param current
+	 * @param level
+	 */
+	private void printGivenLevel(TreeNode current, int level) {
+		
+		//breaking condition
+		if(current == null) return;
+		
+		//Single node
+		if(level == 1) {
+			System.out.print(current.getData()+" -> ");
+		}else {
+			printGivenLevel(current.getLeftNode(), level - 1);
+			
+			printGivenLevel(current.getRightNode(), level - 1);
+		}
+	}
+	
+	
+	/**
+	 * Traverse and print the node data one level at time from top to bottom
+	 * <br>
+	 * Uses a queue (FIFO) to hold the children of current node
+	 * <br>
+	 * Time Complexity: O(n)
+	 */
+	public void traverseLevelOrderUsingQueue() {
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(this.root);
+		
+		while (!queue.isEmpty()) {
+			TreeNode currentNode = queue.poll();
+			
+			//print current node
+			System.out.print(currentNode.getData()+" -> ");
+			
+			//add immediate children
+			if(currentNode.getLeftNode() != null)
+				queue.add(currentNode.getLeftNode());
+			if(currentNode.getRightNode() != null)
+				queue.add(currentNode.getRightNode());
+		}
+	}
+	
+	/**
+	 * Traverse and print the node data one level at time from bottom to top
+	 * <br>
+	 * Uses a queue (FIFO) to hold the children of current node
+	 * <br>
+	 * At the same time, uses a stack to hold tree elements level by level
+	 * <br>
+	 * Time Complexity: O(n)
+	 */
+	public void traverseReverseLevelOrderUsingQueueAndStack() {
+		Stack<TreeNode> stack = new Stack<>();
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(this.root);
+		stack.push(this.root);
+		
+		while (!queue.isEmpty()) {
+			TreeNode currentNode = queue.poll();
+			
+			//add immediate children
+			//IMP - Right subtree is visited before left subtree 
+			if(currentNode.getRightNode() != null) {
+				queue.add(currentNode.getRightNode());
+				stack.push(currentNode.getRightNode());
+			}
+			if(currentNode.getLeftNode() != null) {
+				queue.add(currentNode.getLeftNode());
+				stack.push(currentNode.getLeftNode());
+			}
+		}
+		
+		while(!stack.isEmpty()) {
+			System.out.print(stack.pop().getData()+" -> ");
+		}
 	}
 	
 }
