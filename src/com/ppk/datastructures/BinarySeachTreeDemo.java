@@ -8,9 +8,9 @@ import java.util.Stack;
  * 
  * Binary Search Tree -
  * <br>
- * Condition -
- * <br> 1. Every node can have a max. of 2 nodes
- * <br> 2. For any node, elements on the left are smaller and elements on the right are larger
+ * BSTs are binary trees (every node can have a max. of 2 nodes) with special properties -
+ * <br> 1. Left child is smaller than parent
+ * <br> 2. Right child is greater than parent
  * 
  * <br> <b>Balanced</b> BST -
  * <br> Balanced BST have equal number of left and right elements.
