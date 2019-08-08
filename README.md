@@ -18,6 +18,8 @@ This repository contains Java classes implementing some of the Java coding probl
 - [Pair with minimum absolute difference from two arrays](./src/main/java/com/ppk/problems/arrays/PairWithMinDifference.java)
 
 # Test Cases and Code Coverage
+Code Coverage is a metric that measures what percentage of your code has been executed during unit and integration tests.
+
 The repository also contains JUnit test cases for some of the example above.
 
 I have also added the [Java Code Coverage](https://www.eclemma.org/jacoco/trunk/doc/maven.html) Maven plugin to make sure we write test cases for a minimum of 80% coverage ratio.
