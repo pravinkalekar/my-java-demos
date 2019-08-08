@@ -1,20 +1,94 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>my-java-demos</groupId>
-  <artifactId>my-java-demos</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>my-java-demos</name>
-  <description>My Java Demos</description>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>my-java-demos</groupId>
+	<artifactId>my-java-demos</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>my-java-demos</name>
+	<description>My Java Demos</description>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.3</version>
+				<executions>
+					<execution>
+						<id>coverage-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal> <!-- The prepare-agent goal sets up the property argLine pointing to the JaCoCo runtime agent. The JaCoCo Java agent will collect coverage information when maven-surefire-plugin runs the tests. -->
+						</goals>
+					</execution>
+					<execution>
+						<id>coverage-report</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report</goal> <!-- The report goal creates code coverage reports at target/site/jacoco. See index.html -->
+						</goals>
+					</execution>
+					<!-- Threshold -->
+					<execution>
+						<id>coverage-check</id>
+						<goals>
+							<goal>check</goal> <!-- The check goal validates the coverage rules specified -->
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>CLASS</element><!-- BUNDLE, PACKAGE, CLASS, SOURCEFILE or METHOD -->
+									<excludes>
+										<exclude></exclude>
+									</excludes>
+									<limits>
+										<limit>
+											<counter>LINE</counter><!-- INSTRUCTION, LINE, BRANCH, COMPLEXITY, METHOD, CLASS -->
+											<value>COVEREDRATIO</value><!-- TOTALCOUNT, COVEREDCOUNT, MISSEDCOUNT, COVEREDRATIO, MISSEDRATIO -->
+											<minimum>80%</minimum> <!-- Numeric except ratio which can be e.g. 0.80 or 80%-->
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+							<excludes>
+								<exclude>com/ppk/sorting/**/*</exclude> <!-- package name to be separated by / -->
+								<exclude>com/ppk/datastructures/**/*</exclude> <!-- ** Match zero or more directories -->
+								<exclude>com/ppk/recursion/**/*</exclude><!-- * Match zero or more characters -->
+								<exclude>com/ppk/Main.*</exclude> <!-- Exclude single class -->
+								<exclude></exclude> <!-- ? Match a single character -->
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<configuration>
+					<includes>
+						<include>**/Test*.java</include> <!-- Important to override default surefire-plugin and specify the Test Case file name patterns to match your test cases -->
+						<include>**/*Test.java</include> <!-- Defaults - Test*, *Test, *TestCase -->
+						<include>**/*TestCase.java</include>
+						<include>**/*Tests.java</include> <!-- *Tests is not included in defaults -->
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>
