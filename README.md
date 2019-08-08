@@ -4,7 +4,7 @@ This repository contains Java classes implementing some of the Java coding probl
 ## [Data Structures](./src/main/java/com/ppk/datastructures)
 - [BinarySeachTree](./src/main/java/com/ppk/datastructures/BinarySeachTreeDemo.java)
 ## [Recursion Examples](./src/main/java/com/ppk/recursion)
--[Tower of Hanoi](./src/main/java/com/ppk/recursion/TowerOfHanoiDemo.java)
+- [Tower of Hanoi](./src/main/java/com/ppk/recursion/TowerOfHanoiDemo.java)
 - [Word Brak Problem](./src/main/java/com/ppk/recursion/WordBreakProblemDemo.java)
 ## [Sorting Algorithms](./src/main/java/com/ppk/sorting) 
 - [Bubble Sort](./src/main/java/com/ppk/sorting/BubbleSortDemo.java)
