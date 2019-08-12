@@ -24,6 +24,9 @@ import java.util.PriorityQueue;
  * we add the previous node back if it is still left with a non-zero freq.
  * <br> This way, each element gets processed as per its frequency and no same element gets processed consecutively.
  * <br> In the end, we need to check the size of result vs. the input string and if same, we have the expected result.
+ * <br>
+ * <br>
+ * Time complexity : O(n)
  * 
  * @author pkalekar
  *
