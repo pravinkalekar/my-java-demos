@@ -39,7 +39,7 @@ public class MergeSortDemo {
 		//breaking condition
 		if(start == end) return;	//means that there is one element in the array which we consider as sorted
 
-		int middle = Math.round((start + end)/2);	//Step 1 - find middle - imp - test calculation where start is other than 0
+		int middle = (start + end)/2;	//Step 1 - find middle - imp - test calculation where start is other than 0
 
 		mergeSort(array, start, middle);	//Step 2 - recursive call for left side array
 
