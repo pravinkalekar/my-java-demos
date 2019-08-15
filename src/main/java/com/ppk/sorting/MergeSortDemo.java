@@ -40,7 +40,8 @@ public class MergeSortDemo {
 		if(start == end) return;	//means that there is one element in the array which we consider as sorted
 
 		int middle = (start + end)/2;	//Step 1 - find middle - imp - test calculation where start is other than 0
-
+		//int middle = start + (end - start)/2; // also works
+		
 		mergeSort(array, start, middle);	//Step 2 - recursive call for left side array
 
 		mergeSort(array, middle+1, end);	//Step 3 - recursive call for right side array - imp - middle+1
