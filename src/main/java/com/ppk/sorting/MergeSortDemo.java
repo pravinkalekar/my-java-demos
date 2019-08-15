@@ -16,7 +16,7 @@ import java.util.Arrays;
  * <br><br>
  * Time Complexity - <b>O(n log n)</b>
  * <br><br>
- * Java Collections API used Merge Sort as its default algorithm
+ * Java Collections API use Merge Sort as its default algorithm
  * 
  * @author pkalekar
  *
