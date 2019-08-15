@@ -20,15 +20,15 @@ import java.util.Arrays;
 public class InsertionSortDemo {
 	
 	private static void insertionSort(int[] data) {
-		//first loop runs for complete array i.e. 5 times for 5 element array
+		//first loop runs 4 times for 5 element array
 		//consider this loop as if we have one card drawn from a deck at a time
 		//every time we draw a new card, we compare it with cards in hand from top to bottom (reverse) order
 		//and place the new card at a specific slot
-		for (int i = 0; i < data.length; i++) {
+		for (int i = 1; i < data.length; i++) {
 
 			//hold i'th index item in temp location so that we can insert it at its right place in the array
 			int current = data[i];
-			//point another variable to i-1 index i.e. the top card in hand (it does not exist in first loop)
+			//point another variable to i-1 index i.e. the top card in hand
 			int j = i-1;
 			//run second loop in reverse until either beginning of array or until we keep finding greater elements
 			//i.e. loop if cards exists in hand and if there is a bigger card in hand
