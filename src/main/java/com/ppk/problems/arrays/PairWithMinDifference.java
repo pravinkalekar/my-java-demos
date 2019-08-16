@@ -5,15 +5,20 @@ import java.util.Arrays;
 public class PairWithMinDifference {
 	
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(findPairWithMinDifference(new int[] {4,3,-2,1,5}, new int[] {8,5,1,5,-2})));
-
-		System.out.println(Arrays.toString(findPairWithMinDifferenceV1(new int[] {4,3,2,1,5}, new int[] {8,7,9,6,-2})));
+		System.out.println("n^2 >");
+		System.out.println("Expect [-2, -2] : " + Arrays.toString(findPairWithMinDifference(new int[] {4,3,-2,1,5}, new int[] {8,5,1,5,-2})));
+		System.out.println("Expect [1, 1] : " + Arrays.toString(findPairWithMinDifference(new int[] {4,3,2,1,5}, new int[] {8,5,1,5,-2})));
+		System.out.println("Expect [4, 5] : " + Arrays.toString(findPairWithMinDifference(new int[] {4,3,2,1,15}, new int[] {8,5,7,5,-2})));
+		System.out.println("n log n >");
+		System.out.println("Expect [5, 6] : " + Arrays.toString(findPairWithMinDifferenceV1(new int[] {4,3,2,1,5}, new int[] {8,7,9,6,-2})));
+		System.out.println("Expect [1, 1] : " + Arrays.toString(findPairWithMinDifferenceV1(new int[] {4,3,2,1,5}, new int[] {8,5,1,5,-2})));
+		System.out.println("Expect [4, 5] : " + Arrays.toString(findPairWithMinDifferenceV1(new int[] {4,3,2,1,15}, new int[] {8,5,7,5,-2})));
 	}
 	
 	/**
 	 * Find the pair of numbers one from each array with the minimum absolute difference
 	 * <p>
-	 * Time Complexity - O(n^2)
+	 * Time Complexity - O(n<sup>2</sup>)
 	 * 
 	 * @param array1
 	 * @param array2
@@ -23,13 +28,7 @@ public class PairWithMinDifference {
 
 		int[] result = new int[2];
 
-		if(array1.length == 0 || array2.length == 0){
-			return result;
-		}
-
-		int arr1Index = 0;
-		int arr2Index = 0;
-		int minDiff = Math.abs(array1[0] - array2[0]);
+		int minDiff = Integer.MAX_VALUE;
 
 		for(int i = 0; i < array1.length; i++){
 
@@ -38,15 +37,12 @@ public class PairWithMinDifference {
 				int diff = Math.abs(array1[i] - array2[j]);
 
 				if(diff < minDiff){
-
 					minDiff = diff;
-					arr1Index = i;
-					arr2Index = j;
+					result[0]=array1[i];
+					result[1]=array2[j];
 				}
 			}
 		}
-		result[0]=array1[arr1Index];
-		result[1]=array2[arr2Index];
 
 		return result;
 	}
