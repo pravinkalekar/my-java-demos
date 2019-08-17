@@ -16,17 +16,21 @@ import java.util.HashMap;
 public class PairOfIndicesWithGivenSum {
 
 	public static void main(String[] args) {
-		System.out.println("O(n^2) : ");
+		System.out.println("Brute Force - O(n^2) : ");
 		System.out.println("Expect [1, 2] : "+Arrays.toString(twoSum(new int[]{3, 4, 5, 7, 11}, 9)));
 		System.out.println("Expect [0, 2] : "+Arrays.toString(twoSum(new int[]{3, 4, 6, 7, 11}, 9)));
 		System.out.println("Expect [0, 3] : "+Arrays.toString(twoSum(new int[]{7, 4, 6, 2, 11}, 9)));
 		System.out.println("Expect [3, 4] : "+Arrays.toString(twoSum(new int[]{17, 14, 16, 12, 11}, 23)));
 		System.out.println("Expect [3, 4] : "+Arrays.toString(twoSumLabeledBreak(new int[]{17, 14, 16, 12, 11}, 23)));
-		System.out.println("O(n) : ");
+		System.out.println("Using HashMap - O(n) : ");
 		System.out.println("Expect [1, 2] : "+Arrays.toString(twoSum(new int[]{3, 4, 5, 7, 11}, 9)));
 		System.out.println("Expect [0, 2] : "+Arrays.toString(twoSum(new int[]{3, 4, 6, 7, 11}, 9)));
 		System.out.println("Expect [0, 3] : "+Arrays.toString(twoSum(new int[]{7, 4, 6, 2, 11}, 9)));
 		System.out.println("Expect [3, 4] : "+Arrays.toString(twoSum(new int[]{17, 14, 16, 12, 11}, 23)));
+		System.out.println("Sorted array variation - O(n) : ");
+		System.out.println("Expect [2, 3] : "+Arrays.toString(twoSumSortedArray(new int[]{3, 4, 5, 7, 11}, 9)));
+		System.out.println("Expect [1, 5] : "+Arrays.toString(twoSumSortedArray(new int[]{3, 4, 5, 7, 11}, 14)));
+		System.out.println("Expect [4, 5] : "+Arrays.toString(twoSumSortedArray(new int[]{3, 4, 5, 7, 11}, 18)));
 	}
 	
 	/**
@@ -99,6 +103,33 @@ public class PairOfIndicesWithGivenSum {
             }
         }   
         throw new IllegalArgumentException("Invalid array given");
+    }
+	
+	/**
+	 * Given an input array which is already sorted, return 1-based pair of indices 
+	 * such that they add up to a specific target
+	 * <p>
+	 * Time Complexity - O(n)
+	 * 
+	 * @param numbers
+	 * @param target
+	 * @return
+	 */
+	public static int[] twoSumSortedArray(int[] numbers, int target) {
+        
+        int start = 0, end = numbers.length -1;
+        while(start < end){
+            int sum = numbers[start] + numbers[end];
+            if(sum > target)
+                end--;
+            else if(sum < target)
+                start++;
+            else
+                return new int[]{start + 1, end + 1};            
+        }
+        
+        throw new IllegalArgumentException("Invalid Array");
+        
     }
 
 }
