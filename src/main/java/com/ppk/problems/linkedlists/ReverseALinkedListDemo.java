@@ -2,6 +2,12 @@ package com.ppk.problems.linkedlists;
 
 import com.ppk.problems.linkedlists.LinkedList.Node;
 
+/**
+ * O(n)
+ * 
+ * @author pkalekar
+ *
+ */
 public class ReverseALinkedListDemo {
 	
 	public static void main(String[] args) {
