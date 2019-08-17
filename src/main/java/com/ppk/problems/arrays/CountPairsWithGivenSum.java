@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
+ * Given two LinkedLists of integers, return the count of pairs(one number from each list) such that the pair adds up to a specific target
+ * <p>
  * Best Solution Time Complexity - O(n)
  * 
  * @author pkalekar
@@ -32,7 +34,6 @@ public class CountPairsWithGivenSum {
 	
 	/**
 	 * Brute Force -
-	 * This function counts pairs of numbers in two LinkedLists where the sum of the two numbers is equal to given number
 	 * <br>
 	 * Time Complexity - O(n^2)
 	 * 
@@ -53,8 +54,6 @@ public class CountPairsWithGivenSum {
 	}
 
 	/**
-	 * This function counts pairs of numbers in two LinkedLists where the sum of the two numbers is equal to given number
-	 * <br>
 	 * Time Complexity - O(n^2)
 	 * 
 	 * @param list1

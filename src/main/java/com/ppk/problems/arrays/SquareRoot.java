@@ -1,5 +1,13 @@
 package com.ppk.problems.arrays;
 
+/**
+ * Given an integer, return the integer part of its square root
+ * <p>
+ * Best Solution Time Complexity - O(log n)
+ * 
+ * @author pkalekar
+ *
+ */
 public class SquareRoot {
 
 	public static void main(String[] args) {

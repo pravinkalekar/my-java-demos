@@ -2,6 +2,14 @@ package com.ppk.problems.arrays;
 
 import java.util.Arrays;
 
+/**
+ * Given two arrays of integers, return the pair of numbers(one from each array) with the minimum absolute difference
+ * <p>
+ * Best Solution Time Complexity - O(n log n)
+ * 
+ * @author pkalekar
+ *
+ */
 public class PairWithMinDifference {
 	
 	public static void main(String[] args) {
@@ -16,13 +24,11 @@ public class PairWithMinDifference {
 	}
 	
 	/**
-	 * Find the pair of numbers one from each array with the minimum absolute difference
-	 * <p>
 	 * Time Complexity - O(n<sup>2</sup>)
 	 * 
 	 * @param array1
 	 * @param array2
-	 * @return
+	 * @return The pair of actual values
 	 */
 	public static int[] findPairWithMinDifference(int[] array1, int[] array2) {
 
@@ -49,8 +55,6 @@ public class PairWithMinDifference {
 	
 	
 	/**
-	 * Find the pair of numbers one from each array with the minimum absolute difference
-	 * <p>
 	 * Time Complexity - O(n log n)
 	 * <p>
 	 * mlogm + nlogn + m + n ~= x log x

@@ -1,7 +1,5 @@
 package com.ppk;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -88,47 +86,6 @@ public class Main {
 			System.out.println(count);
 		}
 		scanner.close();
-	}
-
-	/**
-	 * This function counts pairs of numbers in two LinkedLists where the sum of the two numbers is equal to given number
-	 * <br>
-	 * Time Complexity - O(n^2)
-	 * 
-	 * @param list1
-	 * @param list2
-	 * @param sum
-	 * @return
-	 */
-	public static int countPairsFromListsWithGivenSumV1(LinkedList<Integer> list1, LinkedList<Integer> list2, int sum)
-	{
-		int count = 0;
-		for (Integer integer : list1) {
-			for (Integer integer2 : list2) {
-				if(integer+integer2 == sum) count++;
-			}
-		}
-		return count;
-	}
-
-	/**
-	 * This function counts pairs of numbers in two LinkedLists where the sum of the two numbers is equal to given number
-	 * <br>
-	 * Time Complexity - O(n^2)
-	 * 
-	 * @param list1
-	 * @param list2
-	 * @param sum
-	 * @return
-	 */
-	public static int countPairsFromListsWithGivenSumV2(LinkedList<Integer> list1, LinkedList<Integer> list2, int sum)
-	{
-		int count = 0;
-		for (Integer integer : list1) {
-			if(list2.contains(sum-integer)) count++;
-		}
-
-		return count;
 	}
 
 }
