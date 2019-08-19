@@ -1,4 +1,4 @@
-package com.ppk.problems.arrays;
+package com.ppk.problems.heaps;
 
 import java.util.HashMap;
 import java.util.Map.Entry;

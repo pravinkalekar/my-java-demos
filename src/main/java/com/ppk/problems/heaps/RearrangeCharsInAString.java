@@ -24,8 +24,7 @@ import java.util.PriorityQueue;
  * we add the previous node back if it is still left with a non-zero freq.
  * <br> This way, each element gets processed as per its frequency and no same element gets processed consecutively.
  * <br> In the end, we need to check the size of result vs. the input string and if same, we have the expected result.
- * <br>
- * <br>
+ * <p>
  * Time complexity : O(n)
  * 
  * @author pkalekar
@@ -129,6 +128,7 @@ public class RearrangeCharsInAString {
 			//reverse comparator
 			int diff = o2.freq - o1.freq; //ideally we calculate o1 - o2, but since we want a Max Heap
 			
+			//we could return the diff itself
 			if(diff < 0)
 				return -1;
 			
