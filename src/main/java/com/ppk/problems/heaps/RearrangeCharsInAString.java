@@ -2,6 +2,7 @@ package com.ppk.problems.heaps;
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 /**
@@ -34,21 +35,56 @@ public class RearrangeCharsInAString {
 
 	public static void main(String[] args) {
 
-		String input = "aaaaabbbc";
+		System.out.println("Expect ababacaba-  f(aaaaabbbc) - "+ rearrangeChars("aaaaabbbc"));
+		System.out.println("Expect NA- f(aaaaaabbbc) - " + rearrangeChars("aaaaaabbbc"));
 		
-		System.out.println("Input - "+input);
-		System.out.print("Output - ");
-		rearrangeChars(input);
-		
-		input = "aaaaaabbbc";
-		
-		System.out.println("Input - "+input);
-		System.out.print("Output - ");
-		rearrangeChars(input);
+		System.out.println("Expect ababacaba-  f(aaaaabbbc) - "+ rearrangeCharsV1("aaaaabbbc"));
+		System.out.println("Expect NA- f(aaaaaabbbc) - " + rearrangeCharsV1("aaaaaabbbc"));
 		
 	}
 	
-	private static void rearrangeChars(String input) {
+	/**
+	 * Cleaner impl
+	 * 
+	 * @param input
+	 */
+	public static String rearrangeCharsV1(String input) {
+		
+		//Populate frequency map
+		HashMap<Character, Integer> map = new HashMap<>();
+		for (Character c : input.toCharArray()) {
+			map.put(c, map.getOrDefault(c, 0) + 1);
+		}
+		
+		//queue in reverse order comparator based on frequency
+		PriorityQueue<Character> heap = new PriorityQueue<>((c1, c2) -> map.get(c2).compareTo(map.get(c1)));
+		heap.addAll(map.keySet());
+		
+		Character prev = '#';
+		StringBuilder builder = new StringBuilder();
+		while(!heap.isEmpty()) {
+			Character c = heap.poll();
+			//add top freq element in the output and reduce its freq
+			builder.append(c);
+			map.put(c, map.get(c) - 1);
+			
+			//if prev char is left with positive freq, add it back into the heap
+			if(map.containsKey(prev) &&  map.get(prev) > 0) {
+				heap.add(prev);
+			}
+			
+			//hold reference to current character so that we can add it back next time to avoid repetition
+			prev = c;
+		}
+		String output = builder.toString();
+		if(input.length() != output.length()) {
+			return "NA";
+		}else {
+			return output;
+		}
+	}
+	
+	public static String rearrangeChars(String input) {
 		
 		//Calculate character frequencies using a Map
 		HashMap<Character, Node> nodes = new HashMap<>();
@@ -98,11 +134,10 @@ public class RearrangeCharsInAString {
 		
 		String output = buffer.toString();
 		if(input.length() != output.length()) {
-			System.out.println("NA");
+			return "NA";
 		}else {
-			System.out.println(output);
+			return output;
 		}
-		
 	}
 
 	static class Node{
