@@ -16,7 +16,7 @@ import java.util.Stack;
  * <br> Balanced BST have equal number of left and right elements.
  * <br>
  * <br>
- * Time Complexity (Search/Insert/Delete on Balanced BST)- <b> O(log2 n)</b>
+ * Time Complexity (Search/Insert/Delete on Balanced BST)- <b> O(log<sub>2</sub> n)</b>
  * 
  * @author pkalekar
  *
@@ -223,7 +223,7 @@ class BinarySearchTree{
 	 * <br>
 	 * Since we need a reference to the parent of the node we want to delete, we will not use recursion here
 	 * <br>
-	 * So we need maintain references to current node, it's parent node and weather the child is a left or right child
+	 * So we need maintain references to current node, it's parent node and whether the child is a left or right child
 	 * <br>
 	 * There are three use cases to consider -
 	 * <br>1. if the node to be deleted is a leaf node
@@ -424,6 +424,8 @@ class BinarySearchTree{
 	/**
 	 * Traverse and print the node data pre-order
 	 * <br>
+	 * This is same as Depth First Search (DFS) in Graphs (trees are one kind of graphs)
+	 * <br>
 	 * root->left->right
 	 * <br>
 	 * used to create a copy of the tree
@@ -508,6 +510,8 @@ class BinarySearchTree{
 	/**
 	 * Traverse and print the node data one level at time from top to bottom
 	 * <br>
+	 * This is same as Breadth First Search (BFS) in Graphs (trees are one kind of graphs)
+	 * <br>
 	 * Idea is to call a function asking it to print the given level, starting from level 1 to height of tree
 	 * <br>
 	 * Time Complexity: O(n^2)
@@ -524,9 +528,9 @@ class BinarySearchTree{
 	
 	
 	/**
-	 * Traverse and print the node data one level at time from top to bottom
+	 * Traverse and print the node data one level at time from bottom to top
 	 * <br>
-	 * Idea is to call a function asking it to print the given level, starting from level 1 to height of tree
+	 * Idea is to call a function asking it to print the given level, starting from bottom i.e. height of tree to level 1
 	 * <br>
 	 * Time Complexity: O(n^2)
 	 */
@@ -569,7 +573,9 @@ class BinarySearchTree{
 	
 	
 	/**
-	 * Traverse and print the node data one level at time from top to bottom
+	 * Traverse and print the node data one level at a time from top to bottom
+	 * <br>
+	 * This is same as Breadth First Search (BFS) in Graphs (trees are one kind of graphs)
 	 * <br>
 	 * Uses a queue (FIFO) to hold the children of current node
 	 * <br>
@@ -612,7 +618,7 @@ class BinarySearchTree{
 			TreeNode currentNode = queue.poll();
 			
 			//add immediate children
-			//IMP - Right subtree is visited before left subtree 
+			//IMP - Right subtree is visited before left subtree coz we are using a stack
 			if(currentNode.getRightNode() != null) {
 				queue.add(currentNode.getRightNode());
 				stack.push(currentNode.getRightNode());
