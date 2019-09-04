@@ -12,6 +12,8 @@ import java.util.Stack;
  * Uses a custom class <code>Node</code> to represent Graph vertices.
  * <br> 
  * Each Node maintains its neighboring nodes in the form of a <code>LinkedList</code>.
+ * <br>
+ * Refer graph at /src/main/resources/GraphDemo.png
  * 
  * @author pkalekar
  *
